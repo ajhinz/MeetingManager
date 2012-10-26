@@ -12,7 +12,9 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
-
+		<action name="create_tables" class="admin.CreateTablesAction" method="execute">
+			<result name="success">/CreateTables.jsp</result>
+		</action>
 	</package>
 
 </struts>
