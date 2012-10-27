@@ -1,0 +1,5 @@
+CREATE TABLE employee (
+id INTEGER PRIMARY KEY,
+name VARCHAR,
+team VARCHAR,
+build_id INTEGER);

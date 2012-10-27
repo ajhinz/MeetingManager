@@ -14,6 +14,7 @@
 		</action>
 		<action name="create_tables" class="admin.CreateTablesAction" method="execute">
 			<result name="success">/CreateTables.jsp</result>
+			<result name="error">/Error.jsp</result>
 		</action>
 	</package>
 
