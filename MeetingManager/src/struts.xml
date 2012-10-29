@@ -12,8 +12,15 @@
 		<action name="index">
 			<result>/index.jsp</result>
 		</action>
+		<action name="admin">
+			<result>/admin.jsp</result>
+		</action>
 		<action name="create_tables" class="admin.CreateTablesAction" method="execute">
 			<result name="success">/CreateTables.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="drop_tables" class="admin.DropTablesAction" method="execute">
+			<result name="success">/DropTables.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
 	</package>
