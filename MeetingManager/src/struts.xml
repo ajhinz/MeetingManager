@@ -23,6 +23,10 @@
 			<result name="success">/DropTables.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
-	</package>
+		<action name="sample_data" class="admin.SampleDataAction" method="execute">
+			<result name="success">/SampleData.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		</package>
 
 </struts>
