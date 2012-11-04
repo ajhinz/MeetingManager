@@ -24,7 +24,7 @@ public class Database {
 				"jdbc:postgresql://localhost:5432/meetingmanager",
 				"meetingmanager", "meetingmanagerpass");
 		} catch(SQLException e) {
-			System.out.println("Could not connect to database");
+			System.out.println("Could not connect to database!");
 			return;
 		}
 	}
