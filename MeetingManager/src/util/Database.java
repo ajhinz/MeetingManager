@@ -16,7 +16,7 @@ public class Database {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch(ClassNotFoundException e) {
-			System.out.println("JDBC driver not found");
+			System.out.println("JDBC driver not found :(");
 			return;
 		}
 		try {
