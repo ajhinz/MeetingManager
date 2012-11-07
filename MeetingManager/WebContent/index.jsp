@@ -9,11 +9,19 @@
 <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-	<div class="heading">Meeting Manager</div>
+	<div id="heading">Meeting Manager</div>
 
-	<p>
-		<a href="<s:url action='admin'/>">Admin Page</a>
-	</p>
+	<ol id="top_menu">
+		<li>Today</li>
+		<li>Schedule a Meeting</li>
+		<li>Search</li>
+		<li>Team</li>
+		<li><a href="<s:url action='admin'/>">Admin</a></li>
+	</ol>
+
+	<div style="clear:both" id="main">
+		Welcome to the site.
+	</div>
 
 </body>
 </html>

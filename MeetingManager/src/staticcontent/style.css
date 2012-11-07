@@ -1,9 +1,43 @@
 body {
 	margin: 0;
+	font-family: Verdana;
 }
 
-.heading {
+#heading {
 	background-color: rgb(89, 98, 201);
 	color: white;
-	height: 100px;
+	font-size: 60px;
+	padding: 15px;
+	margin: 0;
+}
+
+#top_menu {
+	background-color: rgb(89, 98, 201);
+	color: white;
+	list-style-type: none;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+}
+
+#top_menu li {
+	float: left;
+	padding: 5px;
+	font-size: 15px;
+}
+
+#top_menu li:hover {
+	background-color: rgb(89, 98, 240);
+}
+
+#top_menu a {
+	color: white;
+}
+
+#top_menu a:visited {
+	color: white;
+}
+
+#main {
+	padding: 10px;
 }
