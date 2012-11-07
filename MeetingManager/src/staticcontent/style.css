@@ -1,0 +1,9 @@
+body {
+	margin: 0;
+}
+
+.heading {
+	background-color: rgb(89, 98, 201);
+	color: white;
+	height: 100px;
+}
