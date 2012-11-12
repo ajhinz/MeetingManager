@@ -12,19 +12,20 @@ import java.sql.ResultSet;
 
 public class Database {
 	private Connection connection;
+	private String errMsg;
 	public Database() {
 		try {
 			Class.forName("org.postgresql.Driver");
 		} catch(ClassNotFoundException e) {
-			System.out.println("JDBC driver not found :(");
+			this.errMsg = "JDBC driver not found.";
 			return;
 		}
 		try {
-			connection = DriverManager.getConnection(
+			this.connection = DriverManager.getConnection(
 				"jdbc:postgresql://localhost:5432/meetingmanager",
 				"meetingmanager", "meetingmanagerpass");
 		} catch(SQLException e) {
-			System.out.println("Could not connect to database!");
+			this.errMsg = "Could not connect to database!";
 			return;
 		}
 	}
@@ -46,11 +47,10 @@ public class Database {
 			scanner.close();
 			return true;
 		} catch (FileNotFoundException e) {
-			System.out.println("File not found");
+			this.errMsg = "File not found: " + file;
 			return false;
 		} catch(SQLException e) {
-			System.out.println("Error executing statement");
-			System.out.println(e.getMessage());
+			this.errMsg = "DB Error: " + e.getMessage();
 			return false;
 		}
 		
@@ -60,7 +60,11 @@ public class Database {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			System.out.println("Could not close connection");
+			this.errMsg = "Could not close connection";
 		}
+	}
+	
+	public String getError() {
+		return this.errMsg;
 	}
 }

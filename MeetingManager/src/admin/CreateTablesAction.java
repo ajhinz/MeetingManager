@@ -11,23 +11,25 @@ public class CreateTablesAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	public String execute() throws Exception {
-		if (createTables()) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		return createTables();
 	}
 	
-	private Boolean createTables() {
+	private String createTables() {
 		Database db = new Database();
 		if (!db.isConnected()) {
-			return false;
+			this.addActionError(db.getError());
+			return ERROR;
 		}
 		ServletContext servletContext = ServletActionContext.getServletContext();
 		String file = servletContext.getRealPath("CreateTables.sql");
 		Boolean wasExecuted = db.executeFile(file);
 		db.close();
-		return wasExecuted;
+		if (wasExecuted) {
+			return SUCCESS;
+		}
+		else {
+			this.addActionError(db.getError());
+			return ERROR;
+		}
 	}
 }

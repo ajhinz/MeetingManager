@@ -12,23 +12,25 @@ public class SampleDataAction extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	public String execute() throws Exception {
-		if (addSampleData()) {
-			return SUCCESS;
-		}
-		else {
-			return ERROR;
-		}
+		return addSampleData();
 	}
 	
-	private Boolean addSampleData() {
+	private String addSampleData() {
 		Database db = new Database();
 		if (!db.isConnected()) {
-			return false;
+			this.addActionError(db.getError());
+			return ERROR;
 		}
 		ServletContext servletContext = ServletActionContext.getServletContext();
 		String file = servletContext.getRealPath("SampleData.sql");
 		Boolean wasExecuted = db.executeFile(file);
 		db.close();
-		return wasExecuted;
+		if (wasExecuted) {
+			return SUCCESS;
+		}
+		else {
+			this.addActionError(db.getError());
+			return ERROR;
+		}
 	}
 }
