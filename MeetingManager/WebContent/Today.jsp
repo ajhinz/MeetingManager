@@ -12,7 +12,7 @@
 	<div id="heading">Meeting Manager</div>
 
 	<ol id="top_menu">
-		<li><a href="<s:url action='today'/>">Today</a></li>
+		<li>Today</li>
 		<li>Schedule a Meeting</li>
 		<li>Search</li>
 		<li>Team</li>
@@ -20,7 +20,7 @@
 	</ol>
 
 	<div style="clear:both" id="main">
-		Welcome to the site.
+		Today's Schedule
 	</div>
 
 </body>
