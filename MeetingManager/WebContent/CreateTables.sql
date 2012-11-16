@@ -14,7 +14,7 @@ CREATE TABLE meeting (
 id INTEGER PRIMARY KEY,
 location INTEGER REFERENCES location(id),
 start_time timestamp,
-end_type timestamp,
+end_time timestamp,
 minutes VARCHAR,
 created_by INTEGER REFERENCES employee(id));
 
