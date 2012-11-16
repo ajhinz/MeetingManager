@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <t:template>
+	<jsp:attribute name="title">
+		Administrative Tasks
+	</jsp:attribute>
     <jsp:body>
 <h1>Admin Actions</h1>
 <p><a href="<s:url action='create_tables'/>">Create Tables</a></p>

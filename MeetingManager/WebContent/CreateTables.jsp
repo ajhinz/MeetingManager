@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <t:template>
+	<jsp:attribute name="title">
+		Create Tables
+	</jsp:attribute>
     <jsp:body>
 Tables successfully created.
     </jsp:body>

@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <t:template>
+	<jsp:attribute name="title">
+		Schedule a Meeting
+	</jsp:attribute>
     <jsp:body>
         <p>Schedule a meeting</p>
     </jsp:body>

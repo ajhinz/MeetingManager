@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <t:template>
+	<jsp:attribute name="title">
+		An Error Occurred.
+	</jsp:attribute>
     <jsp:body>
 	There was an error performing the action.
 	<s:if test="hasActionErrors()">

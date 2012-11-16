@@ -3,6 +3,9 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
 <t:template>
+	<jsp:attribute name="title">
+		Meeting Manager
+	</jsp:attribute>
     <jsp:body>
         <p>Welcome to the site.</p>
     </jsp:body>
