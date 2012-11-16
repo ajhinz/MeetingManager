@@ -31,7 +31,11 @@
 			<result name="success">/Today.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
+		<action name="schedule" class="meetingmanager.ScheduleAction" method="execute">
+			<result name="success">/Schedule.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
 		
-		</package>
+	</package>
 
 </struts>

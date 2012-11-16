@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Start Page</title>
+<title>Schedule a Meeting</title>
 <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
 	</ol>
 
 	<div style="clear:both" id="main">
-		Welcome to the site.
+		Schedule a Meeting
 	</div>
 
 </body>
