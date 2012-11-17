@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="static/style.css">
 </head>
 <body>
-	<div id="heading">Meeting Manager!!</div>
+	<div id="heading">Meeting Manager</div>
 
 	<ol id="top_menu">
 		<li><a href="<s:url action='today'/>">Today</a></li>
