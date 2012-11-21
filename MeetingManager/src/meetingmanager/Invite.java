@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import util.Database;
 
-public class Invitation {
+public class Invite {
 
 	private Database db;
 	private int id;
@@ -18,7 +18,7 @@ public class Invitation {
 
 	private static final String sql = "SELECT meeting_id, employee_id, response FROM invited WHERE id = ?";
 	
-	public Invitation(int id, Database db) throws SQLException {
+	public Invite(int id, Database db) throws SQLException {
 		this.db = db;
 		PreparedStatement statement = db.prepareStatement(sql);
 		statement.setInt(1, id);

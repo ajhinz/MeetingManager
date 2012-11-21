@@ -18,7 +18,7 @@ public class Main {
 			System.out.println(m.getLocation());
 			System.out.println(m.getCreatedBy());
 			
-			Invitation i = new Invitation(1, db);
+			Invite i = new Invite(1, db);
 			System.out.println(i.getEmployee());
 			System.out.println(i.getMeeting());
 			System.out.println(i.getResponse());
