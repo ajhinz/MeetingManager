@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import java.sql.DriverManager;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.ResultSet;
@@ -54,6 +55,28 @@ public class Database {
 			return false;
 		}
 		
+	}
+
+	public ResultSet execute(String query, String[] args) {
+		try {
+			Statement statement = this.connection.createStatement();
+			statement.execute(query, args);
+			return statement.getResultSet();
+		} catch (SQLException e) {
+			this.errMsg = "DB Error: " + e.getMessage();
+			return null;
+		}
+	}
+	
+	public PreparedStatement prepareStatement(String query) {
+		
+		try {
+			return this.connection.prepareStatement(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			this.errMsg = e.getMessage();
+			return null;
+		}
 	}
 	
 	public void close() {
