@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Date;
 
 import meetingmanager.Location;
 import meetingmanager.Employee;
@@ -64,12 +65,12 @@ public class Meeting {
 		return this.location;
 	}
 
-	public Timestamp getStartTime() {
-		return startTime;
+	public Date getStartTime() {
+		return new Date(this.startTime.getTime());
 	}
 
-	public Timestamp getEndTime() {
-		return endTime;
+	public Date getEndTime() {
+		return new Date(this.endTime.getTime());
 	}
 	public Employee getCreatedBy() throws SQLException {
 		if (this.createdBy == null) {

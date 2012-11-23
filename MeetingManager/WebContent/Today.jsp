@@ -21,7 +21,8 @@
 		<ol>
 			<s:iterator value="schedule">
 				<li>
-					<s:property value="startTime" /> - <s:property value="endTime" />
+					<s:date name="startTime" format="hh:mm a" /> - 
+					<s:date name="endTime" format="hh:mm a" />
 				</li>	
 			</s:iterator>
 		</ol>
