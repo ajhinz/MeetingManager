@@ -7,7 +7,6 @@
 		<s:property value="day" /> Schedule
 	</jsp:attribute>
     <jsp:body>
-        <p><s:property value="day" /> Schedule</p>
 		<p>
         	<s:url action="today" var="yesterday">
         		<s:param name="day"><s:date name="yesterday" format="yyyyMMdd" /></s:param>
@@ -16,8 +15,15 @@
         		<s:param name="day"><s:date name="tomorrow" format="yyyyMMdd" /></s:param>
         	</s:url>
 			<a href="${yesterday}"><<</a>
+			<s:property value="day" /> Schedule
 			<a href="${tomorrow}">>></a>
-		
 		</p>
+		<ol>
+			<s:iterator value="schedule">
+				<li>
+					<s:property value="startTime" /> - <s:property value="endTime" />
+				</li>	
+			</s:iterator>
+		</ol>
     </jsp:body>
 </t:template>

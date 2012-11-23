@@ -41,8 +41,17 @@ public class Meeting {
 		}
 		rs.close();
 		statement.close();
-
 	}
+
+	public Meeting(ResultSet rs) throws SQLException {
+		this.id = rs.getInt("id");
+		this.locationId = rs.getInt("location");
+		this.startTime = rs.getTimestamp("start_time");
+		this.endTime = rs.getTimestamp("end_time");
+		this.createdById = rs.getInt("created_by");
+		this.minutes = rs.getString("minutes");
+	}
+	
 	
 	public int getId() {
 		return this.id;
@@ -59,7 +68,7 @@ public class Meeting {
 		return startTime;
 	}
 
-	public Timestamp getStopTime() {
+	public Timestamp getEndTime() {
 		return endTime;
 	}
 	public Employee getCreatedBy() throws SQLException {

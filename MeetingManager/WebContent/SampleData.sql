@@ -16,7 +16,7 @@ INSERT INTO meeting (id, location, start_time, end_time, created_by) VALUES (2, 
 INSERT INTO meeting (id, location, start_time, end_time, created_by) VALUES (3, 3, '2012-11-18 12:30:00', '2012-11-18 15:30:00', 5);
 INSERT INTO meeting (id, location, start_time, end_time, created_by) VALUES (4, 4, '2012-11-19 10:00:00', '2012-11-19 11:30:00', 6);
 
-INSERT INTO invited (id, meeting_id, employee_id, response) VALUES (1, 1, 1, false);
+INSERT INTO invited (id, meeting_id, employee_id, response) VALUES (1, 1, 1, true);
 INSERT INTO invited (id, meeting_id, employee_id, response) VALUES (2, 1, 2, false);
 INSERT INTO invited (id, meeting_id, employee_id, response) VALUES (3, 2, 2, false);
 INSERT INTO invited (id, meeting_id, employee_id, response) VALUES (4, 2, 3, false);

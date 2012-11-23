@@ -1,10 +1,13 @@
 package meetingmanager;
 
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.ParameterAware;
@@ -19,13 +22,14 @@ public class TodayAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	private Date day = new Date();
 	private Map params;
+	private Employee user;
 	
 	public String execute() throws Exception {
 		Database db = new Database();
 		Map<String, Object> session = getSession();
-		Employee user = (Employee)session.get("user");
-		if (user == null) {
-			user = new Employee(1, db);
+		this.user = (Employee)session.get("user");
+		if (this.user == null) {
+			this.user = new Employee(1, db);
 		}
 		
 		return SUCCESS;
@@ -63,6 +67,16 @@ public class TodayAction extends ActionSupport implements SessionAware {
 		calendar.setTime(this.day);
 		calendar.add(Calendar.DATE, 1);
 		return calendar.getTime();
+	}
+	
+	public List<Meeting> getSchedule() {
+		try {
+			return this.user.getSchedule(this.day);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return new LinkedList<Meeting>();
 	}
 	
 }
