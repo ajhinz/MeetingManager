@@ -1,7 +1,6 @@
 package meetingmanager;
 
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,7 +9,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.struts2.interceptor.ParameterAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import util.Database;
@@ -21,7 +19,6 @@ public class TodayAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> session;
 	private Date day = new Date();
-	private Map params;
 	private Employee user;
 	
 	public String execute() throws Exception {
