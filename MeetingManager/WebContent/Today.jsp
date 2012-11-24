@@ -21,8 +21,13 @@
 		<ol>
 			<s:iterator value="schedule">
 				<li>
-					<s:date name="startTime" format="hh:mm a" /> - 
-					<s:date name="endTime" format="hh:mm a" />
+					<s:url action="meeting" var="meetingUrl">
+						<s:param name="id" value="id" />
+					</s:url>
+					<a href="${meetingUrl}">
+						<s:date name="startTime" format="hh:mm a" /> - 
+						<s:date name="endTime" format="hh:mm a" />
+					</a>
 				</li>	
 			</s:iterator>
 		</ol>
