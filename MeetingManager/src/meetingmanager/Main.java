@@ -11,7 +11,6 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Database db = new Database();
 		try {
 			Meeting m = new Meeting(1, db);
@@ -25,7 +24,6 @@ public class Main {
 
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

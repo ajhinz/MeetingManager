@@ -73,8 +73,7 @@ public class Database {
 		try {
 			return this.connection.prepareStatement(query);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			this.errMsg = e.getMessage();
+			this.errMsg = "DB ERROR: " + e.getMessage();
 			return null;
 		}
 	}

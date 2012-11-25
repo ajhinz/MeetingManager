@@ -87,16 +87,4 @@ public class Meeting {
 	public void setMinutes(String minutes) {
 		this.minutes = minutes;
 	}
-	
-	public static void main(String[] args) {
-		Database db = new Database();
-		try {
-			Meeting m = new Meeting(0, db);
-			System.out.println(m.getCreatedBy());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 }

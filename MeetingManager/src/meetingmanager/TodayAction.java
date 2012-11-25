@@ -5,7 +5,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -66,14 +65,8 @@ public class TodayAction extends ActionSupport implements SessionAware {
 		return calendar.getTime();
 	}
 	
-	public List<Meeting> getSchedule() {
-		try {
-			return this.user.getSchedule(this.day);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return new LinkedList<Meeting>();
+	public List<Meeting> getSchedule() throws SQLException {
+		return this.user.getSchedule(this.day);
 	}
 	
 }

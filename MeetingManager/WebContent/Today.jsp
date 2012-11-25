@@ -14,9 +14,9 @@
         	<s:url action="today" var="tomorrow">
         		<s:param name="day"><s:date name="tomorrow" format="yyyyMMdd" /></s:param>
         	</s:url>
-			<a href="${yesterday}"><<</a>
+			<a href="${yesterday}">&lt;&lt;</a>
 			<s:property value="day" /> Schedule
-			<a href="${tomorrow}">>></a>
+			<a href="${tomorrow}">&gt;&gt;</a>
 		</p>
 		<ol>
 			<s:iterator value="schedule">
