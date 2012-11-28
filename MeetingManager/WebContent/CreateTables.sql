@@ -23,3 +23,11 @@ id INTEGER PRIMARY KEY,
 meeting_id INTEGER REFERENCES meeting(id),
 employee_id INTEGER REFERENCES employee(id),
 response boolean);
+
+CREATE SEQUENCE employee_seq;
+
+CREATE SEQUENCE location_seq;
+
+CREATE SEQUENCE meeting_seq;
+
+CREATE SEQUENCE invited_seq;
