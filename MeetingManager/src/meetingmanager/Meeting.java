@@ -13,7 +13,6 @@ import util.Database;
 public class Meeting {
 	
 	private int id;
-	private int locationId;
 	private Location location;
 	private Timestamp startTime;
 	private Timestamp endTime;
@@ -23,7 +22,10 @@ public class Meeting {
 	private String minutes;
 	private Database db;
 
-	private static final String sql = "SELECT location, start_time, end_time, created_by, minutes FROM meeting WHERE id = ?;";
+	private static final String sql = "SELECT location.id loc_id, location.name loc_name, " +
+	"location.city loc_city, start_time, end_time, created_by, minutes " +
+	"FROM meeting JOIN location ON meeting.location = location.id " +
+	"WHERE meeting.id = ?;";
 
 	public Meeting(int id, Database db) throws SQLException {
 		/* id, location, start_time, end_time, created_by */
@@ -34,11 +36,14 @@ public class Meeting {
 		
 		while(rs.next()) {
 			this.id = id;
-			this.locationId = rs.getInt("location");
+			this.location = new Location(rs.getInt("loc_id"),
+										 rs.getString("loc_name"),
+										 rs.getString("loc_city"));
 			this.startTime = rs.getTimestamp("start_time");
 			this.endTime = rs.getTimestamp("end_time");
 			this.createdById = rs.getInt("created_by");
 			this.minutes = rs.getString("minutes");
+
 		}
 		rs.close();
 		statement.close();
@@ -46,7 +51,9 @@ public class Meeting {
 
 	public Meeting(ResultSet rs) throws SQLException {
 		this.id = rs.getInt("id");
-		this.locationId = rs.getInt("location");
+		this.location = new Location(rs.getInt("loc_id"),
+				 					 rs.getString("loc_name"),
+				 					 rs.getString("loc_city"));
 		this.startTime = rs.getTimestamp("start_time");
 		this.endTime = rs.getTimestamp("end_time");
 		this.createdById = rs.getInt("created_by");
@@ -59,9 +66,6 @@ public class Meeting {
 	}
 	
 	public Location getLocation() throws SQLException {
-		if (this.location == null) {
-			this.location = new Location(this.locationId, this.db);
-		}
 		return this.location;
 	}
 

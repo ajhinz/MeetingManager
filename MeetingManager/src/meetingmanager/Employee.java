@@ -16,7 +16,12 @@ public class Employee {
 	private String team;
 
 	private static final String sql = "SELECT name, team FROM employee WHERE id = ?";
-	private static final String schedule_sql = "SELECT m.id, m.location, m.start_time, m.end_time, m.created_by, m.minutes FROM invited i JOIN meeting m on i.meeting_id = m.id WHERE i.employee_id = ? AND date(m.start_time) = ? AND i.response ORDER BY m.start_time";
+	private static final String schedule_sql = "SELECT location.id loc_id, " +
+	"location.name loc_name, location.city loc_city, m.id, m.start_time, m.end_time, " +
+	"m.created_by, m.minutes FROM invited i JOIN meeting m on i.meeting_id = m.id " +
+	"JOIN location on m.location = location.id " +
+	"WHERE i.employee_id = ? AND date(m.start_time) = ? AND i.response " +
+	"ORDER BY m.start_time";
 	
 	public Employee(int id, Database db) throws SQLException {
 		this.db = db;
