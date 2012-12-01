@@ -10,11 +10,11 @@
 		<table border=1>
 			<tr>
 				<td>Starts at</td>
-				<td><s:date name="meeting.startTime" format="hh:mm a" /></td>
+				<td><s:date name="meeting.startTime" format="MM/dd/YYYY hh:mm a" /></td>
 			</tr>
 			<tr>
 				<td>Ends at</td>
-				<td><s:date name="meeting.endTime" format="hh:mm a" /></td>
+				<td><s:date name="meeting.endTime" format="MM/dd/YYYY hh:mm a" /></td>
 			</tr>
 			<tr>
 				<td>Created by</td>

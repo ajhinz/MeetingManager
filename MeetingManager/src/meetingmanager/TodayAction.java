@@ -20,12 +20,15 @@ public class TodayAction extends ActionSupport implements SessionAware {
 	private Date day = new Date();
 	private Employee user;
 	
-	public String execute() throws Exception {
+	public String execute() throws SQLException {
 		Database db = new Database();
 		Map<String, Object> session = getSession();
 		this.user = (Employee)session.get("user");
 		if (this.user == null) {
 			this.user = new Employee(1, db);
+		}
+		else {
+			this.user.setDb(db);
 		}
 		
 		return SUCCESS;

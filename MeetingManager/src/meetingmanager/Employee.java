@@ -23,6 +23,9 @@ public class Employee {
 	"WHERE i.employee_id = ? AND date(m.start_time) = ? AND i.response " +
 	"ORDER BY m.start_time";
 	
+	private static final String invite_sql = "SELECT id, meeting_id, employee_id, response " +
+	"FROM invited WHERE employee_id = ? AND response IS NULL";
+	
 	public Employee(int id, Database db) throws SQLException {
 		this.db = db;
 		PreparedStatement statement = db.prepareStatement(sql);
@@ -71,6 +74,26 @@ public class Employee {
 		
 		return schedule;
 	}
+
+	public List<Invite> getInvites() throws SQLException {
+		List<Invite> invites = new LinkedList<Invite>();
+
+		PreparedStatement statement = db.prepareStatement(invite_sql);
+		statement.setInt(1, this.id);
+		ResultSet rs = statement.executeQuery();
+		
+		while(rs.next()) {
+			invites.add(new Invite(rs, db));
+		}
+		rs.close();
+		statement.close();
+		
+		return invites;
+		
+	}
 	
+	public void setDb(Database db) {
+		this.db = db;
+	}
 
 }

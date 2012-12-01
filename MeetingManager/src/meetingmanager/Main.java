@@ -22,7 +22,7 @@ public class Main {
 			System.out.println(i.getMeeting());
 			System.out.println(i.getResponse());
 
-			
+			i.getEmployee().getInvites();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -41,6 +41,16 @@
 			<result name="success">/Meeting.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
+		<action name="invites" class="meetingmanager.InviteAction" method="execute">
+			<result name="success">/Invite.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+		<action name="is_attending" class="meetingmanager.IsAttendingAction" method="execute">
+			<param name="id" />
+			<param name="response" />
+			<result name="success">/Invite.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
 	</package>
 
 </struts>
