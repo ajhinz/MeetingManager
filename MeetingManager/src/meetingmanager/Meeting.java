@@ -26,6 +26,10 @@ public class Meeting {
 	"location.city loc_city, start_time, end_time, created_by, minutes " +
 	"FROM meeting JOIN location ON meeting.location = location.id " +
 	"WHERE meeting.id = ?;";
+	
+	private static final String add_minutes_sql = "UPDATE meeting SET minutes = ? WHERE id = ? and minutes IS NULL";
+	
+	private static final String add_minutes_overwrite_sql = "UPDATE meeting SET minutes = ? WHERE id = ?";
 
 	public Meeting(int id, Database db) throws SQLException {
 		/* id, location, start_time, end_time, created_by */
@@ -88,7 +92,24 @@ public class Meeting {
 		return minutes;
 	}
 
-	public void setMinutes(String minutes) {
+	public int setMinutes(String minutes) throws SQLException {
 		this.minutes = minutes;
+		PreparedStatement statement = this.db.prepareStatement(add_minutes_sql);
+		statement.setString(1, minutes);
+		statement.setInt(2, this.id);
+		
+		return statement.executeUpdate();
+	}
+	
+	public void setMinutesOverwrite(String minutes) throws SQLException {
+		this.minutes = minutes;
+		PreparedStatement statement = this.db.prepareStatement(add_minutes_overwrite_sql);
+		statement.setString(1, minutes);
+		statement.setInt(2, this.id);
+		statement.executeUpdate();
+	}
+	
+	public boolean isHasMinutes() {
+		return this.minutes.length() > 0;
 	}
 }

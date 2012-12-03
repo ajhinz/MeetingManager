@@ -27,7 +27,21 @@
 			</tr>
 			<tr>
 				<td>Minutes</td>
-				<td><s:property value="meeting.minutes" /></td>
+				<td>
+					<s:if test="meeting.hasMinutes">
+						<s:property value="meeting.minutes" />
+					</s:if>
+					<s:elseif test="currentUser.id == meeting.createdBy.id">
+						<s:form action="save_minutes">
+							<s:hidden name="id" value="%{meeting.id}" />
+							<s:textarea name="minutes" cols="50" rows="6" />
+							<s:submit />
+						</s:form>
+					</s:elseif>
+					<s:else>
+						[No Minutes]
+					</s:else>
+				</td>
 			</tr>
 		</table>
     </jsp:body>
