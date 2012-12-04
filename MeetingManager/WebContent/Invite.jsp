@@ -30,5 +30,8 @@
 				</li>
 			</s:iterator>
 		</ol>
+			<s:if test="invites.size() == 0">
+				There are no meeting invites awaiting your response.
+			</s:if>
     </jsp:body>
 </t:template>
