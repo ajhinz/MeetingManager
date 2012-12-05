@@ -30,6 +30,11 @@ public class Meeting {
 	private static final String add_minutes_sql = "UPDATE meeting SET minutes = ? WHERE id = ? and minutes IS NULL";
 	
 	private static final String add_minutes_overwrite_sql = "UPDATE meeting SET minutes = ? WHERE id = ?";
+	
+	private static final String seq_sql = "select nextval('meeting_seq');";
+	
+	private static final String new_sql = "INSERT INTO meeting (id, location, start_time, end_time, created_by) " +
+			" VALUES(?, ?, ?, ?, ?);";
 
 	public Meeting(int id, Database db) throws SQLException {
 		/* id, location, start_time, end_time, created_by */
@@ -64,6 +69,30 @@ public class Meeting {
 		this.minutes = rs.getString("minutes");
 	}
 	
+	public Meeting(int location, Date startTime, Date endTime, int createdById, int[] invited, Database db) throws SQLException {
+		PreparedStatement seqStatement = db.prepareStatement(seq_sql);
+		ResultSet rs = seqStatement.executeQuery();
+		rs.next();
+		this.id = rs.getInt(1);
+		this.location = new Location(location, db);
+		this.startTime = new Timestamp(startTime.getTime());
+		this.endTime = new Timestamp(endTime.getTime());
+		this.createdById = createdById;
+		this.createdBy = new Employee(createdById, db);
+		
+		PreparedStatement insertStatement = db.prepareStatement(new_sql);
+		insertStatement.setInt(1, this.id);
+		insertStatement.setInt(2, this.location.getId());
+		insertStatement.setTimestamp(3, this.startTime);
+		insertStatement.setTimestamp(4,  this.endTime);
+		insertStatement.setInt(5, this.createdById);
+		insertStatement.execute();
+		
+		for (int i = 0; i < invited.length; i++) {
+			new Invite(this.id, invited[i], db);
+		}
+		new Invite(this.id, createdById, db);
+	}
 	
 	public int getId() {
 		return this.id;

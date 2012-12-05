@@ -32,6 +32,9 @@ public class Invite {
 
 	private static final String not_attending_sql = "update invited set response = false where id = ?";
 	
+	private static final String new_sql = "INSERT INTO invited (id, meeting_id, employee_id) " +
+			"VALUES (nextval('invited_seq'), ?, ?)";
+	
 	public Invite(int id, Database db) throws SQLException {
 		this.db = db;
 		PreparedStatement statement = db.prepareStatement(sql);
@@ -55,6 +58,13 @@ public class Invite {
 		this.meetingId = rs.getInt("meeting_id");
 		this.employeeId = rs.getInt("employee_id");
 		this.response = rs.getBoolean("response");
+	}
+	
+	public Invite(int meetingId, int employeeId, Database db) throws SQLException {
+		PreparedStatement statement = db.prepareStatement(new_sql);
+		statement.setInt(1, meetingId);
+		statement.setInt(2, employeeId);
+		statement.execute();
 	}
 	
 	public int getId() {

@@ -26,6 +26,8 @@ public class Employee {
 	private static final String invite_sql = "SELECT id, meeting_id, employee_id, response " +
 	"FROM invited WHERE employee_id = ? AND response IS NULL";
 	
+	private static final String get_all_empoyees = "SELECT id, name, team FROM employee WHERE id != ?;";
+	
 	public Employee(int id, Database db) throws SQLException {
 		this.db = db;
 		PreparedStatement statement = db.prepareStatement(sql);
@@ -40,6 +42,13 @@ public class Employee {
 		rs.close();
 		statement.close();
 
+	}
+	
+	public Employee(int id, String name, String team, Database db) {
+		this.db = db;
+		this.id = id;
+		this.name = name;
+		this.team = team;
 	}
 
 	public int getId() {
@@ -94,6 +103,22 @@ public class Employee {
 	
 	public void setDb(Database db) {
 		this.db = db;
+	}
+	
+	public static List<Employee> getAllEmployees(int ignore_id, Database db) throws SQLException {
+		List<Employee> employees = new LinkedList<Employee>();
+		
+		PreparedStatement statement = db.prepareStatement(get_all_empoyees);
+		statement.setInt(1, ignore_id);
+		ResultSet rs = statement.executeQuery();
+		while(rs.next()) {
+			Employee employee = new Employee(rs.getInt("id"),
+											 rs.getString("name"),
+											 rs.getString("team"),
+											 db);
+			employees.add(employee);
+		}
+		return employees;		
 	}
 
 }

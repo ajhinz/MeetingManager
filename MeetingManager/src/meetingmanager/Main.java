@@ -1,16 +1,14 @@
 package meetingmanager;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import util.Database;
 import meetingmanager.Meeting;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException, SQLException {
 		Database db = new Database();
 		try {
 			Meeting m = new Meeting(1, db);
@@ -26,6 +24,7 @@ public class Main {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 }

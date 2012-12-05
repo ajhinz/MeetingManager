@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.ResultSet;
 
 public class Database {
 	private Connection connection;
@@ -55,17 +54,6 @@ public class Database {
 			return false;
 		}
 		
-	}
-
-	public ResultSet execute(String query, String[] args) {
-		try {
-			Statement statement = this.connection.createStatement();
-			statement.execute(query, args);
-			return statement.getResultSet();
-		} catch (SQLException e) {
-			this.errMsg = "DB Error: " + e.getMessage();
-			return null;
-		}
 	}
 	
 	public PreparedStatement prepareStatement(String query) {

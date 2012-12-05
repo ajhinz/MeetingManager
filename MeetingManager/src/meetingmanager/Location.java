@@ -3,6 +3,9 @@ package meetingmanager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import util.Database;
 
@@ -13,6 +16,13 @@ public class Location {
 	private String city;
 	
 	private static final String sql = "SELECT name, city FROM location WHERE id = ?;";
+	
+	private static final String available_sql = "select loc.id, loc.name, loc.city " +
+			"from location loc " +
+			"where loc.id not in (select location " +
+			"from meeting " +
+			"where ? >= start_time " +
+			"and ? <= end_time);";
 	
 	public Location(int id, Database db) throws SQLException {
 		/* (id, name, building_number, city) */
@@ -61,5 +71,21 @@ public class Location {
 	
 	public String toString() {
 		return this.id + ": " + this.name + " (" + this.city + ")";
+	}
+	
+	public static List<Location> getAvailableLocations(Date startTime, Date endTime, Database db) throws SQLException {
+		PreparedStatement statement = db.prepareStatement(available_sql);
+		statement.setTimestamp(1, new java.sql.Timestamp(endTime.getTime()));
+		statement.setTimestamp(2, new java.sql.Timestamp(startTime.getTime()));
+		ResultSet rs = statement.executeQuery();
+		
+		List<Location> availableLocations = new LinkedList<Location>();
+		while (rs.next()) {
+			Location loc = new Location(rs.getInt("id"),
+										rs.getString("name"),
+										rs.getString("city"));
+			availableLocations.add(loc);
+		}
+		return availableLocations;
 	}
 }
