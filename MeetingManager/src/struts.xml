@@ -34,10 +34,12 @@
 		<action name="today" class="meetingmanager.TodayAction" method="execute">
 			<param name="day">dayValue</param>
 			<result name="success">/Today.jsp</result>
+			<result name="login">/index.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
 		<action name="schedule" class="meetingmanager.ScheduleAction" method="execute">
 			<result name="success">/Schedule.jsp</result>
+			<result name="login">/index.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
 		<action name="meeting" class="meetingmanager.MeetingAction" method="execute">
@@ -46,6 +48,7 @@
 		</action>
 		<action name="invites" class="meetingmanager.InviteAction" method="execute">
 			<result name="success">/Invite.jsp</result>
+			<result name="login">/index.jsp</result>
 			<result name="error">/Error.jsp</result>
 		</action>
 		<action name="is_attending" class="meetingmanager.IsAttendingAction" method="execute">
