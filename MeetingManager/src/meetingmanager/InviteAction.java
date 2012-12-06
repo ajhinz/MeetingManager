@@ -19,15 +19,14 @@ public class InviteAction extends ActionSupport implements SessionAware {
 	private List<Invite> invites;
 	
 	public String execute() throws SQLException {
-		Map<String, Object> session = getSession();
 		Database db = new Database();
-		this.user = (Employee)session.get("user");
-		if (this.user == null) {
-			this.user = new Employee(1, db);
+
+		Map<String, Object> session = getSession();
+		Object usrObject = session.get("user");
+		if (usrObject == null) {
+			return "login";
 		}
-		else {
-			this.user.setDb(db);
-		}
+		this.user = new Employee((int) usrObject, db);
 		
 		try {
 			this.invites = this.user.getInvites();

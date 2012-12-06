@@ -25,13 +25,12 @@ public class SaveMeetingAction extends ActionSupport implements SessionAware{
 	public String execute() throws Exception {
 		Database db = new Database();
 		
-		this.user = (Employee)session.get("user");
-		if (this.user == null) {
-			this.user = new Employee(1, db);
+		Map<String, Object> session = getSession();
+		Object usrObject = session.get("user");
+		if (usrObject == null) {
+			return "login";
 		}
-		else {
-			this.user.setDb(db);
-		}
+		this.user = new Employee((int) usrObject, db);
 
 		SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
 		Date date = parser.parse(this.dateStr);
@@ -90,5 +89,9 @@ public class SaveMeetingAction extends ActionSupport implements SessionAware{
 	
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+	
+	public Map<String, Object> getSession() {
+		return this.session;
 	}
 }

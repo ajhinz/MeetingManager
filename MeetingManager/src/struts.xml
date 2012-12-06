@@ -9,9 +9,13 @@
 
 	<package name="basicstruts2" extends="struts-default">
 
-		<action name="index">
-			<result>/index.jsp</result>
+		<action name="login" class="meetingmanager.LoginAction" method="execute">
+			<result name="success">/Login.jsp</result>
 		</action>
+		<action name="save_login" class="meetingmanager.SaveLoginAction" method="execute">
+			<result name="success">/SaveLogin.jsp</result>
+		</action>
+		
 		<action name="admin">
 			<result>/admin.jsp</result>
 		</action>

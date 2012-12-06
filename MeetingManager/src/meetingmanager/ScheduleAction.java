@@ -19,13 +19,12 @@ public class ScheduleAction extends ActionSupport implements SessionAware{
 	public String execute() throws Exception {
 		Database db = new Database();
 		
-		this.user = (Employee)session.get("user");
-		if (this.user == null) {
-			this.user = new Employee(1, db);
+		Map<String, Object> session = getSession();
+		Object usrObject = session.get("user");
+		if (usrObject == null) {
+			return "login";
 		}
-		else {
-			this.user.setDb(db);
-		}
+		this.user = new Employee((int) usrObject, db);
 		
 		this.employees = Employee.getAllEmployees(this.user.getId(), db);
 		return SUCCESS;
@@ -38,5 +37,8 @@ public class ScheduleAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-
+	
+	private Map<String, Object> getSession() {
+		return this.session;
+	}
 }

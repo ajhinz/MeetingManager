@@ -23,7 +23,7 @@
 						<s:param name="id" value="id" />
 					</s:url>
 					<a href="${meetingUrl}">
-						<s:date name="meeting.startTime" format="hh:mm a" /> - 
+						<s:date name="meeting.startTime" format="MM/dd/yyyy hh:mm a" /> - 
 						<s:date name="meeting.endTime" format="hh:mm a" /></a>
 					Attending? <a href="${responseUrlYes}">Yes</a> or
 					<a href="${responseUrlNo}">No</a>

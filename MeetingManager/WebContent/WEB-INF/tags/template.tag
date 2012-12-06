@@ -17,8 +17,8 @@
 		<li><a href="<s:url action='today' />">Today</a></li>
 		<li><a href="<s:url action='schedule' />">Schedule a Meeting</a></li>
 		<li><a href="<s:url action='invites' />">Invites</a></li>
-		<li>Team</li>
 		<li><a href="<s:url action='admin' />">Admin</a></li>
+		<li><a href="<s:url action='login' />">Logout</a></li>
 	</ol>
 
 	<div style="clear:both" id="main">

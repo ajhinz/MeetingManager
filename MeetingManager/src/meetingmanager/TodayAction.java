@@ -23,14 +23,11 @@ public class TodayAction extends ActionSupport implements SessionAware {
 	public String execute() throws SQLException {
 		Database db = new Database();
 		Map<String, Object> session = getSession();
-		this.user = (Employee)session.get("user");
-		if (this.user == null) {
-			this.user = new Employee(1, db);
+		Object usrObject = session.get("user");
+		if (usrObject == null) {
+			return "login";
 		}
-		else {
-			this.user.setDb(db);
-		}
-		
+		this.user = new Employee((int) usrObject, db);
 		return SUCCESS;
 	}
 

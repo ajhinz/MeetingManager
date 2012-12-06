@@ -18,15 +18,15 @@ public class MeetingAction extends ActionSupport implements SessionAware {
 	private Map<String, Object> session;
 	
 	public String execute() throws SQLException {
-		Map<String, Object> session = getSession();
+		
 		Database db = new Database();
-		this.user = (Employee)session.get("user");
-		if (this.user == null) {
-			this.user = new Employee(1, db);
+		
+		Map<String, Object> session = getSession();
+		Object usrObject = session.get("user");
+		if (usrObject == null) {
+			return "login";
 		}
-		else {
-			this.user.setDb(db);
-		}
+		this.user = new Employee((int) usrObject, db);
 		
 		try {
 			this.meeting = new Meeting(this.id, db);
